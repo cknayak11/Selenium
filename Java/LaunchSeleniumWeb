@@ -1,0 +1,51 @@
+package MavenDemo2;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class LaunchSeleniumHQ {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		WebDriverManager.edgedriver().setup();
+		EdgeDriver driver = new EdgeDriver();
+
+        driver.get("https://www.selenium.dev/selenium/web/web-form.html");
+        driver.manage().window().maximize();
+        driver.getTitle();
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+
+        WebElement textBox1 = driver.findElement(By.name("my-text"));
+        WebElement textBox2 = driver.findElement(By.name("my-password"));
+        WebElement textBox3 = driver.findElement(By.name("my-textarea"));
+        WebElement textBox4 = driver.findElement(By.name("my-select"));
+        WebElement textBox5 = driver.findElement(By.name("my-datalist"));
+        WebElement textBox6 = driver.findElement(By.name("my-date"));
+        WebElement submitButton = driver.findElement(By.cssSelector("button"));
+        
+
+
+        textBox1.sendKeys("Selenium");
+        textBox2.sendKeys("Selenium");
+        textBox3.sendKeys("Selenium Learning Programm");
+        textBox4.sendKeys("Two");
+        textBox5.sendKeys("New York");
+        textBox6.sendKeys("11/08/2023");
+        
+        submitButton.click();
+
+        WebElement message = driver.findElement(By.id("message"));
+        message.getText();
+
+        driver.quit();
+
+	}
+
+}
